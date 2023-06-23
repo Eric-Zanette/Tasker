@@ -1,13 +1,136 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;900&display=swap');
+
+:root {
+  --primary-color:#8ECAE6;
+  --secondary-color:#219EBC;
+  --color3: #023047;
+  --color4: #FFB703;
+  --color5: #FB8500;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-family: 'Raleway'
+}
+
+li{
+  list-style: none;
+}
+
+nav{
+  background-color: var(--secondary-color);
+  padding: 10px 0;
+}
+
+nav h1{
+  font-size: 46px;
+}
+
+nav .navListContainer{
+  display: flex;
+  align-items: center;
+}
+
+nav .navListContainer .navList{
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  
+}
+
+nav .navListContainer .navList li{
+  font-size: 25px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right:5px;
+  cursor: pointer;
+}
+
+
+.formControl{
+  text-align: center;
+}
+
+.formControl h1{
+  margin: 20px 0;
+  color: #000000;
+}
+
+.taskForm{
+  max-width: 500px;
+  display: flex;
+  margin:auto;
+  flex-direction: column;
+}
+
+.taskInput{
+  margin: 2.5px;
+  border-radius: 5px;
+  border: none;
+  padding:5px;
+  text-align: 0;
+}
+ 
+.description{
+  height: 100px;
+ }
+
+
+/* Task List */
+
+.taskList{
+  margin-top: 20px;
+  align-self: center;
+  text-align: center;
+}
+
+/* Utilities */
+.container{
+  margin: auto;
+  max-width: 1100px;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn{
+  display: relative;
+  cursor: pointer;
+  font-weight: 900;
+  margin: 10px;
+  padding:7.5px 15px;
+  align-self: center;
+  border-radius: 5px;
+  border-style: solid;
+  border: none;
+  background-color: var(--primary-color);
+  color: #000000;
+}
+
+.btn-Secondary{
+  background-color: var(--secondary-color);
+  color: #000000;
+}
+.btn-3{
+  background-color: var(--color3);
+  color: #ffffff;
+}
+.btn-4{
+  background-color: var(--color4);
+  color: #000000;
+}
+.btn-5{
+  background-color: var(--color5);
+  color: #000000;
 }
