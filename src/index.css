@@ -108,11 +108,36 @@ nav .navListContainer .navList li{
   align-items: center;
 }
 
+.taskList .listTitle{
+  margin: 20px 0;
+}
+
+.taskList .noTasks{
+ margin: 35px 0px;
+ color: #000000;
+}
+
 /* Task Item */
 
+.card.completed{
+  background-color: #baf599;
+}
 
+.card .completeIcon{
+  cursor: pointer;
+  position: absolute;
+  left: 10px
+}
 
-.card .openMenu{
+.card .deleteIcon{
+  cursor: pointer;
+  position: absolute;
+  left: 40px;
+  color: #fc5151
+}
+
+.card .openMenuIcon{
+  cursor: pointer;
   position: absolute;
   right: 10px
 }

@@ -10,7 +10,6 @@ export const TasksProvider = ({children}) => {
   const fetchTasks = async () => {
     const response = await fetch('http://localhost:3000/tasks')
     setTasks(await response.json())
-    console.log(tasks)
   }
 
   const addTask = async (task) => {
@@ -19,14 +18,33 @@ export const TasksProvider = ({children}) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task)
     }
-
     const response = await fetch('http://localhost:3000/tasks', reqInfo)
-    console.log(response)
     fetchTasks()
   }
 
+  const editTask = async (task) => {
+    const reqInfo = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(task)
+    }
+    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, reqInfo)
+    fetchTasks()
+  }
+
+  const deleteTask = async (task) => {
+    const reqInfo = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(task)
+    }
+    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, reqInfo)
+    fetchTasks()
+  }
+
+
   return (
-    <TasksContext.Provider value={{tasks, fetchTasks, addTask}}>
+    <TasksContext.Provider value={{tasks, fetchTasks, addTask, editTask, deleteTask}}>
         {children}
     </TasksContext.Provider>
     

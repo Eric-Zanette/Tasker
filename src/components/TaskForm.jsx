@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import { useContext } from 'react'
-import TasksContext from './context/context/TasksContext'
+import TasksContext from '../context/Tasks/TasksContext'
 
 const TaskForm = () => {
     const[task, setTask] = useState({

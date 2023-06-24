@@ -1,36 +1,3 @@
 {
-  "tasks": [
-    {
-      "posted": "2023-06-23",
-      "title": "Mow the lawn",
-      "description": "I have to mow the lawn",
-      "complete": false,
-      "finishBy": "2023-06-24",
-      "id": 1
-    },
-    {
-      "posted": "2023-06-23",
-      "title": "Clean the Fridge",
-      "description": "The fridge is getting gross!",
-      "complete": false,
-      "finishBy": "2023-06-30",
-      "id": 2
-    },
-    {
-      "posted": "2023-06-23",
-      "title": "Get Groceries",
-      "description": "We're running low on groceries!",
-      "complete": false,
-      "finishBy": "2023-07-01",
-      "id": 3
-    },
-    {
-      "posted": "2023-06-24",
-      "title": "Go to the hardware store",
-      "description": "-tools\n-brooms\n-saws\n-supplies",
-      "complete": false,
-      "finishBy": "",
-      "id": 4
-    }
-  ]
+  "tasks": []
 }
