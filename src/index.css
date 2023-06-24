@@ -55,6 +55,17 @@ nav .navListContainer .navList li{
   cursor: pointer;
 }
 
+/* Home Page */
+
+.taskContainer{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+}
+
+/* Task Form */
 
 .formControl{
   text-align: center;
@@ -91,7 +102,39 @@ nav .navListContainer .navList li{
   margin-top: 20px;
   align-self: center;
   text-align: center;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* Task Item */
+
+
+
+.card .openMenu{
+  position: absolute;
+  right: 10px
+}
+
+.underCard{
+  border:var(--color3) solid 2px;
+  width: 100%;
+  background-color: #ffffff;
+  color: black;
+  padding: 2.5px 10px
+}
+
+.underCard .itemDescription{
+  margin: 20px 0;
+  color:#023047;
+  text-align: start;
+}
+.underCard .underFlex{
+  display: flex;
+  justify-content: space-between;
+}
+
 
 /* Utilities */
 .container{
@@ -133,4 +176,19 @@ nav .navListContainer .navList li{
 .btn-5{
   background-color: var(--color5);
   color: #000000;
+}
+
+.card{
+  position: relative;
+  background-color: white;
+  color: black;
+  width:100%;
+  border:var(--color3) solid 2px;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin:0px 0;
+}
+
+.card h1{
+  font-size: 18px;
 }

@@ -22,6 +22,7 @@ export const TasksProvider = ({children}) => {
 
     const response = await fetch('http://localhost:3000/tasks', reqInfo)
     console.log(response)
+    fetchTasks()
   }
 
   return (
