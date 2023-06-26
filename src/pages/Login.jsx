@@ -1,9 +1,14 @@
-import React from 'react'
+import LoginForm from "../components/LoginForm"
+import { useNavigate } from "react-router-dom"
 
-const Login = () => {
+function Login() {
+  const navigate = useNavigate()
+
   return (
-    <div>Login</div>
-  )
+      <div className="formContainer">
+          <LoginForm />
+       </div>
+    )
 }
 
 export default Login

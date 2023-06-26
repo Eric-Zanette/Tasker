@@ -2,6 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import { useContext } from 'react'
 import TasksContext from '../context/Tasks/TasksContext'
+import UserContext from '../context/Users/UserContext'
 
 const TaskForm = () => {
     const[task, setTask] = useState({
@@ -14,11 +15,12 @@ const TaskForm = () => {
     const[toggle, setToggle] = useState(false)
 
     const{addTask} = useContext(TasksContext)
+    const{user} = useContext(UserContext)
 
     const onChange = (e) => {
         setTask({
             ...task,
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
         })
     }
 
@@ -28,7 +30,8 @@ const TaskForm = () => {
   
         const postedTask = {
             ...task,
-            posted: now
+            posted: now,
+            user: user.username
         }
         addTask(postedTask)
     }
@@ -36,7 +39,6 @@ const TaskForm = () => {
     const toggleForm = () => {
         setToggle(!toggle)
     }
-
 
     return (
         <>

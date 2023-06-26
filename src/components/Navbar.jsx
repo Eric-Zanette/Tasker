@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import UserContext from '../context/Users/UserContext'
+
 
 
 
 const Navbar = () => {
-
-
+  const{user} = useContext(UserContext)
   const navigate = useNavigate()
 
 
@@ -18,7 +20,7 @@ const Navbar = () => {
         <div className="navListContainer">
           <ul className="navList">
             <li className='navItem' onClick={() => navigate('/')} >Tasks</li>
-            <li className='navItem' onClick={() => navigate('/profile')}>Profile</li>
+            <li className='navItem' onClick={() => navigate(`/${user ? 'profile' : 'login'}`)}>Profile</li>
             <li className='navItem' onClick={() => navigate('/about')}>About</li>
           </ul>
         </div>

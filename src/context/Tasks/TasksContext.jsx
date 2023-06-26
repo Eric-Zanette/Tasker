@@ -1,15 +1,18 @@
-import{createContext, useState } from 'react'
+import{createContext, useState, useContext } from 'react'
+import UserContext from '../Users/UserContext'
 
 const TasksContext = createContext()
 
 export const TasksProvider = ({children}) => {
-  const [user, setUser] = useState([])
   const [tasks, setTasks] = useState([])
-  const [loading, setLoading] = useState([])
+
+  const {user} = useContext(UserContext)
 
   const fetchTasks = async () => {
-    const response = await fetch('http://localhost:3000/tasks')
+    if(user) {
+    const response = await fetch(`http://localhost:3000/tasks?user=${user.username}`)
     setTasks(await response.json())
+    }
   }
 
   const addTask = async (task) => {

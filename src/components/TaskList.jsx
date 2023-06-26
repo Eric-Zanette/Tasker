@@ -8,7 +8,6 @@ const TaskList = () => {
     const completedTasks = tasks.filter((task) => task.complete)
     const incompleteTasks = tasks.filter((task) => !task.complete)
 
-    console.log(completedTasks.length)
 
     return (
         <div className="taskList">

@@ -1,54 +1,48 @@
-import{createContext, useState } from 'react'
+import { createContext, useState, useEffect } from "react";
 
-const TasksContext = createContext()
+const UserContext = createContext()
 
-export const TasksProvider = ({children}) => {
-  const [user, setUser] = useState([])
-  const [Users, setUsers] = useState([])
-  const [loading, setLoading] = useState([])
+export const UserProvider = ({children}) => {
+    const [user, setUser] = useState(localStorage.getItem('user'))
 
-  const fetchUsers = async () => {
-    const response = await fetch('http://localhost:3000/Users')
-    setUsers(await response.json())
-  }
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(user))
+    }, [user])
 
-  const addTask = async (task) => {
-    const reqInfo = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
+    const registerUser = async (formData) => {
+        console.log(formData)
+        const response = await fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        const data = await response.json()
+        response.ok && await setUser(data.user)
+        return response
+      }
+
+    const loginUser = async(formData) => {
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        
+        const data = await response.json()
+        response.ok && await setUser(data.user)
+        return response
     }
-    const response = await fetch('http://localhost:3000/Users', reqInfo)
-    fetchUsers()
-  }
 
-  const editTask = async (task) => {
-    const reqInfo = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
-    }
-    const response = await fetch(`http://localhost:3000/Users/${task.id}`, reqInfo)
-    fetchUsers()
-  }
-
-  const deleteTask = async (task) => {
-    const reqInfo = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
-    }
-    const response = await fetch(`http://localhost:3000/Users/${task.id}`, reqInfo)
-    fetchUsers()
-  }
+    const logout = async (formData) => {
+        setUser(null)
+    }   
 
 
-  return (
-    <UsersContext.Provider value={{Users, fetchUsers, addTask, editTask, deleteTask}}>
-        {children}
-    </UsersContext.Provider>
-    
-  )
+    return(
+        <UserContext.Provider value={{user, registerUser, logout, loginUser}}>
+            {children}
+        </UserContext.Provider>
+        )
 }
 
-export default UsersContext
+export default UserContext

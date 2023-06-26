@@ -25,9 +25,9 @@ const TaskItem = ({task}) => {
         deleteTask(task)
         console.log(task)
     }
+
+    const timeLeft = new Date(finishBy)
     
-
-
     return (
         <>
             <div className={`card ${complete && 'completed'}`}>
@@ -46,6 +46,7 @@ const TaskItem = ({task}) => {
                     <p><strong>{`complete by: ${finishBy}`}</strong></p>
                 </div>
                 <p className='itemDescription'>{description}</p>
+                <p className='timeLeft'></p>
             </div>
         </>
     )
