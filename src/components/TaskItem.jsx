@@ -26,7 +26,8 @@ const TaskItem = ({task}) => {
         console.log(task)
     }
 
-    const timeLeft = new Date(finishBy)
+    const timeLeft = new Date(finishBy) - new Date()
+    const daysLeft = (timeLeft / 86400000).toFixed(2)
     
     return (
         <>
@@ -46,7 +47,7 @@ const TaskItem = ({task}) => {
                     <p><strong>{`complete by: ${finishBy}`}</strong></p>
                 </div>
                 <p className='itemDescription'>{description}</p>
-                <p className='timeLeft'></p>
+                <p className='timeLeft'>{`${daysLeft.split[0]} ${(daysLeft >= 2) ? 'Days' : 'Day'} Left to Complete!`}</p>
             </div>
         </>
     )

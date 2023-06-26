@@ -3,11 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const UserContext = createContext()
 
 export const UserProvider = ({children}) => {
-    const [user, setUser] = useState(localStorage.getItem('user'))
-
-    useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(user))
-    }, [user])
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
     const registerUser = async (formData) => {
         console.log(formData)
@@ -18,6 +14,7 @@ export const UserProvider = ({children}) => {
         })
         const data = await response.json()
         response.ok && await setUser(data.user)
+        localStorage.setItem('user', JSON.stringify(data.user))
         return response
       }
 
@@ -30,6 +27,7 @@ export const UserProvider = ({children}) => {
         
         const data = await response.json()
         response.ok && await setUser(data.user)
+        localStorage.setItem('user', JSON.stringify(data.user))
         return response
     }
 
