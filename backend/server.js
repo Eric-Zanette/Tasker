@@ -27,7 +27,7 @@ mongoose
 
 
 
-app.get('/users', (req, res) => res.send('hello world'))
+app.use('/api/users', users)
 
 const port = process.env.PORT || 5000
 
