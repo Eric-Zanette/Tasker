@@ -1,0 +1,75 @@
+{
+  "tasks": [
+    {
+      "posted": "2023-06-26",
+      "title": "fsdfasd",
+      "description": "fasdfsadfsad",
+      "complete": false,
+      "finishBy": "2023-06-28",
+      "user": "bob",
+      "id": 1
+    },
+    {
+      "posted": "2023-06-28",
+      "title": "Go to the store",
+      "description": "GO TO IT!",
+      "complete": false,
+      "finishBy": "2023-06-23",
+      "user": "steezlouise",
+      "id": 2
+    },
+    {
+      "posted": "2023-06-28",
+      "title": "Go to the storesdfasdfasd",
+      "description": "GO TO IT!dsfsadf",
+      "complete": true,
+      "finishBy": "2023-06-23",
+      "user": "steezlouise",
+      "id": 4
+    },
+    {
+      "posted": "2023-06-28",
+      "title": "Go to the storesdfasdfasd",
+      "description": "GO TO IT!dsfsadf",
+      "complete": false,
+      "finishBy": "2023-06-23",
+      "user": "steezlouise",
+      "id": 5
+    },
+    {
+      "posted": "2023-06-28",
+      "title": "Go to the storesdfasdfasd",
+      "description": "GO TO IT!dsfsadf",
+      "complete": true,
+      "finishBy": "2023-06-23",
+      "user": "steezlouise",
+      "id": 6
+    }
+  ],
+  "users": [
+    {
+      "email": "ericzanette@gmail.com",
+      "password": "$2a$10$vCQKkIsA2M7DR75XSnium./XMVSWHiB8IVwrwL5FsU4YMMAR28x1u",
+      "username": "steezlouise",
+      "id": 1
+    },
+    {
+      "email": "eric@gmail.com",
+      "password": "$2a$10$kNgDE1xAMQLiSQD3Q62eRO.fg6va5MHnQuODkX17J215s0RdwqcXy",
+      "username": "eric",
+      "id": 2
+    },
+    {
+      "email": "bob@gmail.com",
+      "password": "$2a$10$BOb1yMrHrjCzXbCY9bTSJeQFJ8ReYuJoQVfcepnyuGml4EtXT2yVi",
+      "username": "bob",
+      "id": 3
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$tQzHZP54NDxNyfJQS.PBiuIUshEpJaPwK28RkatuWeFOZJzgxgdhi",
+      "username": "admin",
+      "id": 4
+    }
+  ]
+}
