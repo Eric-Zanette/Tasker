@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const keys = require('../../config/keys')
 const passport = require('passport')
+const {validateLoginInput, validateRegistrationInput} = require('../../validation/users')
 
 
 /* Load user model */
@@ -15,7 +16,11 @@ const User = require('../../models/User')
 /* @acess   Public */
 
 router.get('/register', (req, res) => {
-    errors = {}
+    const {errors, isValid} = validateRegistrationInput(req.body)
+
+    if(!isValid){
+        return res.status(400).json(errors)
+    }
     /* see if email is already registered */
     User.findOne( {email: req.body.email} )
         .then(user => {
@@ -46,11 +51,18 @@ router.get('/register', (req, res) => {
 })
 
 /* @route   GET api/users/login */
-/* @des     Register user */
+/* @des     login user */
 /* @acess   Public */
 
 router.get('/login', async (req, res) => {
-    errors = {}
+
+    const {errors, isValid} = validateLoginInput(req.body)
+
+    if(!isValid){
+        return res.status(404).json(errors)
+    }
+
+
     /* see if email is already registered */
     User.findOne( {email: req.body.email} )
         .then(user => {
@@ -84,6 +96,17 @@ router.get('/login', async (req, res) => {
                 }
             })
  
+    })
+})
+
+/* @route   GET api/users/current */
+/* @des     get loggin in user */
+/* @acess   Public */
+router.get('/current', passport.authenticate('jwt', {session: false}), (req,res) => {
+    res.json({
+        id: req.user.id,
+        email: req.user.mail,
+        username: req.user.username
     })
 })
 
