@@ -67,7 +67,7 @@ router.get('/login', async (req, res) => {
     User.findOne( {email: req.body.email} )
         .then(user => {
         if(!user) {
-            /* throw error if exists */
+            /* throw error if does not exist */
             errors.email = 'User does not exist'
             return res.status(400).json(errors)
         }

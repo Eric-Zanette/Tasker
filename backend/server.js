@@ -20,6 +20,9 @@ app.use(bodyParser.json())
 /* Bring in mongo key */
 const mkey = (require('./config/keys')).mongoURI
 
+/* passport config */
+require('./config/passport')(passport)
+
 mongoose
     .connect(mkey)
     .then(() => console.log('mongo DB connected'))
@@ -28,6 +31,7 @@ mongoose
 
 
 app.use('/api/users', users)
+app.use('/api/tasks', tasks)
 
 const port = process.env.PORT || 5000
 

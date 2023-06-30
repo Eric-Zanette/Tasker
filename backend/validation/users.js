@@ -4,19 +4,19 @@ const isEmpty = require('./isEmpty')
 validateLoginInput = (data) => {
     let errors = {}
 
-    data.email = isEmpty(data.email) ? data.email : ''
-    data.password = isEmpty(data.password) ? data.password : ''
+    data.email = !isEmpty(data.email) ? data.email : ''
+    data.password = !isEmpty(data.password) ? data.password : ''
 
     if(!Validator.isEmail(data.email)) {
         errors.email = 'Not a valid email!'
     }
 
-    if(data.email.length === 0) {
+    if(Validator.isEmpty(data.password)) {
         errors.email = 'Email is required'
     }
 
-    if(data.password.length === 0) {
-        errors.email = 'Password is required'
+    if(Validator.isEmpty(data.password)) {
+        errors.password = 'Password is required'
         
     }
 
@@ -29,17 +29,17 @@ validateLoginInput = (data) => {
 validateRegistrationInput = (data) => {
     let errors = {}
 
-    data.email = isEmpty(data.email) ? data.email : ''
-    data.password = isEmpty(data.password) ? data.password : ''
-    data.password2 = isEmpty(data.password2) ? data.password2 : ''
-    data.username = isEmpty(data.username) ? data.username : ''
+    data.email = !isEmpty(data.email) ? data.email : ''
+    data.password = !isEmpty(data.password) ? data.password : ''
+    data.password2 = !isEmpty(data.password2) ? data.password2 : ''
+    data.username = !isEmpty(data.username) ? data.username : ''
 
 
     if(!Validator.isLength(data.username.toString(), {min:2, max: 15})) {
         errors.username = 'Username must be between 2 and 15 characters'
     }
 
-    if(data.username.length === 0 || !username) {
+    if(Validator.isEmpty(data.username)) {
         errors.username = 'Username is required'
     }
 
@@ -47,15 +47,15 @@ validateRegistrationInput = (data) => {
         errors.email = 'Not a valid email!'
     }
 
-    if(data.email.length === 0) {
+    if(Validator.isEmpty(data.email)) {
         errors.email = 'Email is required'
     }
 
-    if(data.password.length === 0) {
+    if(Validator.isEmpty(data.password)) {
         errors.password = 'Password is required'     
     }
 
-    if(data.password2 != data.password1) {
+    if(!Validator.equals(data.password, data.password2)) {
         errors.password2 = 'passwords must match'     
     }
 

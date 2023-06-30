@@ -7,7 +7,7 @@ export const UserProvider = ({children}) => {
 
     const registerUser = async (formData) => {
         console.log(formData)
-        const response = await fetch('http://localhost:3000/users', {
+        const response = await fetch('http://localhost:5000/users/register', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(formData)
