@@ -26,6 +26,6 @@ const TaskSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }
-})
+}, {timestamps: true})
 
 module.exports = Task = mongoose.model('tasks', TaskSchema)

@@ -10,7 +10,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchTasks()
-    console.log(user)
   }, [])
 
 

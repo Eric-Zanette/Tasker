@@ -1,5 +1,6 @@
 import{createContext, useState, useContext, useEffect } from 'react'
 import UserContext from '../Users/UserContext'
+import axios from 'axios'
 
 const TasksContext = createContext()
 
@@ -8,45 +9,50 @@ export const TasksProvider = ({children}) => {
 
   const {user} = useContext(UserContext)
 
-  useEffect(() => {
-    fetchTasks()
-  })
 
   const fetchTasks = async () => {
-    if(user) {
-    const response = await fetch(`http://localhost:3000/tasks?user=${user.username}`)
-    setTasks(await response.json())
+    try {
+      if(user) {
+        const response = await axios.get('http://localhost:5000/api/tasks')
+        setTasks(response.data)
+        }
+    } catch(error) {
+      console.log(error)
+      setTasks([])
     }
   }
 
   const addTask = async (task) => {
-    const reqInfo = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
+    try {
+      if(user) {
+        const response = await axios.post('http://localhost:5000/api/tasks', task)
+        fetchTasks()
+        }
+    } catch(error) {
+      console.log(error)
     }
-    const response = await fetch('http://localhost:3000/tasks', reqInfo)
-    fetchTasks()
   }
 
   const editTask = async (task) => {
-    const reqInfo = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
+    try {
+      if(user) {
+        
+        const response = await axios.post(`http://localhost:5000/api/tasks/${task._id}`, task)
+        fetchTasks()
+        }
+    } catch(error) {
+      console.log(error)
     }
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, reqInfo)
-    fetchTasks()
   }
 
   const deleteTask = async (task) => {
-    const reqInfo = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task)
+    try{
+      await axios.delete(`http://localhost:5000/api/tasks/${task._id}`)
+      fetchTasks()
+    } catch(error){
+      console.log(error)
     }
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, reqInfo)
-    fetchTasks()
+    
   }
 
 

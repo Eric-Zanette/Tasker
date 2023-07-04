@@ -191,16 +191,26 @@ nav .navListContainer .navList li{
 .formContainer .form{
   display: flex;
   flex-direction: column;
+  width:450px;
   gap: 5px;
 }
 
 .formContainer .form .formInput{
   height: 40px;
-  width: 500px;
+  max-width: 100%;
   border-radius: 5px;
   border: none;
   margin-top: 20px;
   padding: 0px 5px
+}
+
+.formContainer .form .formInput.isInvalid{
+  border: 1px red solid;
+}
+
+.formContainer .form .invalidText{
+  color: red;
+  font-size: 14px;
 }
 
 /* Profile Page */
@@ -214,11 +224,18 @@ nav .navListContainer .navList li{
   margin-top: 100px;
 }
 
+/* Footer */
+footer{
+  background-color: #023047;
+  height: 10%;
+  font-size: 20px;
+}
+
 /* Utilities */
 .container{
   margin: auto;
   max-width: 1100px;
-  height: 100%;
+  height: 90%;
 }
 
 .flex{

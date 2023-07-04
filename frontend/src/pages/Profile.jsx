@@ -6,7 +6,7 @@ import TasksContext from "../context/Tasks/TasksContext"
 
 const Profile = () => {
   const {logout, user} = useContext(UserContext)
-  const { tasks } = useContext(TasksContext)
+  const { tasks, fetchTasks } = useContext(TasksContext)
   
 
   const navigate = useNavigate()
@@ -20,8 +20,6 @@ const Profile = () => {
   if (!user){
     return <div>Loading...</div>
   }
-
-  console.log(user.user)
 
   return (
     <>

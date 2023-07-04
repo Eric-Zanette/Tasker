@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FaPlus, FaMinus, FaCheck, FaTrash } from 'react-icons/fa'
 import TasksContext from '../context/Tasks/TasksContext'
 
 const TaskItem = ({task}) => {
     const [toggle, setToggle] = useState(false)
 
-    const {posted, title, description, complete, finishBy, id} = task
+    const {posted, title, description, complete, finishBy, createdAt} = task
 
-    const {editTask, deleteTask} = useContext(TasksContext)
+    const {editTask, deleteTask, fetchTasks, tasks} = useContext(TasksContext)
+
 
     const onClick = async () => {
         await setToggle(!toggle)
@@ -23,12 +24,15 @@ const TaskItem = ({task}) => {
 
     const deleted = async (e) => {
         deleteTask(task)
-        console.log(task)
     }
 
-    const timeLeft = new Date(finishBy) - new Date()
-    const daysLeft = (timeLeft / 86400000).toFixed(2)
-    
+    const currentDate = new Date()
+    const timePosted = new Date(createdAt)
+    const finish = new Date(finishBy)
+
+    const timeLeft = finish - currentDate
+    const daysLeft = (timeLeft / 86400000).toFixed(1)
+
     return (
         <>
             <div className={`card ${complete && 'completed'}`}>
@@ -43,11 +47,11 @@ const TaskItem = ({task}) => {
             </div>
             <div className="underCard" style={{display : toggle ? 'block' : 'none'}}>
                 <div className="underFlex" >
-                    <p><strong>{`posted on: ${posted}`}</strong></p>
-                    <p><strong>{`complete by: ${finishBy}`}</strong></p>
+                    <p><strong>{`posted on: ${timePosted.toISOString().split('T')[0]}`}</strong></p>
+                    <p><strong>{`complete by: ${finish.toISOString().split('T')[0]}`}</strong></p>
                 </div>
                 <p className='itemDescription'>{description}</p>
-                <p className='timeLeft'>{`${daysLeft.split[0]} ${(daysLeft >= 2) ? 'Days' : 'Day'} Left to Complete!`}</p>
+                <p className='timeLeft'>{`${daysLeft} ${(daysLeft >= 2) ? 'Days' : 'Day'} Left to Complete!`}</p>
             </div>
         </>
     )

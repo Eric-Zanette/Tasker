@@ -36,11 +36,33 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req,res) => {
     Task.find({user: req.user.id})
         .then(posts => {
             if(posts.length === 0) {
-                return res.status(404).json('noposts: No posts found')
+                return res.status(404).json('notasks: No tasks found')
             }
             res.json(posts)
         })
         .catch(err => res.status(500).json(err))
+})
+
+/* @Route       DELETE /api/tasks/:id */
+/* @desc        delete a specific  */
+/* @access      Private  */
+router.delete('/:id', passport.authenticate('jwt', {session: false}), (req,res) => {
+    console.log(req.params.id)
+    Task.deleteOne({_id: req.params.id})
+        .then(res.json({"msg" : "Task deleted"}))
+        .catch(err => res.status(500).json(err))
+})
+
+/* @Route       POST /api/tasks/:id */
+/* @desc        edit a specific  */
+/* @access      Private  */
+router.post('/:id', passport.authenticate('jwt', {session: false}), (req,res) => {
+    Task.replaceOne(
+        { _id: req.params.id },
+        req.body
+        )
+            .then(task => res.json(task))
+            .catch(err => res.status(500).json(err))
 })
 
 module.exports = router

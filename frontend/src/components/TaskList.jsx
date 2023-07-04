@@ -3,7 +3,11 @@ import TasksContext from "../context/Tasks/TasksContext"
 import TaskItem from "./TaskItem"
 
 const TaskList = () => {
-    const {tasks} = useContext(TasksContext)
+    const {tasks, fetchTasks} = useContext(TasksContext)
+
+/*     useEffect(() => {
+        fetchTasks()
+    }, [tasks]) */
 
     const completedTasks = tasks.filter((task) => task.complete)
     const incompleteTasks = tasks.filter((task) => !task.complete)

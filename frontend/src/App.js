@@ -6,6 +6,7 @@ import About from './pages/About';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import Footer from './components/Footer';
 import { TasksProvider } from './context/Tasks/TasksContext';
 import { UserProvider } from './context/Users/UserContext';
 
@@ -24,8 +25,8 @@ function App() {
                 <Route path='/profile' element={<Profile />}></Route>
                 <Route path='/login' element={<Login />}></Route>
               </Routes>
-              
             </div>
+            <Footer />
         </Router>
         </TasksProvider>
       </UserProvider>

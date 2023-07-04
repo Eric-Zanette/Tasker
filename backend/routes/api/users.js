@@ -15,7 +15,7 @@ const User = require('../../models/User')
 /* @des     Register user */
 /* @acess   Public */
 
-router.get('/register', (req, res) => {
+router.post('/register', (req, res) => {
     const {errors, isValid} = validateRegistrationInput(req.body)
 
     if(!isValid){
@@ -50,11 +50,11 @@ router.get('/register', (req, res) => {
     })
 })
 
-/* @route   GET api/users/login */
+/* @route   POST api/users/login */
 /* @des     login user */
 /* @acess   Public */
 
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
 
     const {errors, isValid} = validateLoginInput(req.body)
 
