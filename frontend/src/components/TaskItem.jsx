@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useState } from 'react'
-import { FaPlus, FaMinus, FaCheck, FaTrash } from 'react-icons/fa'
+import { FaPlus, FaMinus, FaCheck, FaTrash, FaTimes } from 'react-icons/fa'
 import TasksContext from '../context/Tasks/TasksContext'
+import TaskForm from './TaskForm'
 
 const TaskItem = ({task}) => {
     const [toggle, setToggle] = useState(false)
@@ -36,8 +37,12 @@ const TaskItem = ({task}) => {
     return (
         <>
             <div className={`card ${complete && 'completed'}`}>
-                <h1>
-                    <FaCheck className='completeIcon' onClick={setComplete} />
+                <h1> 
+                    {!complete ?
+                    <FaCheck className='completeIcon' onClick={setComplete} /> :
+                    <FaTimes className='uncompleteIcon' />
+                    }
+                    
                     <FaTrash className='deleteIcon' onClick={deleted} />
                     {title}
                     {toggle ? 
