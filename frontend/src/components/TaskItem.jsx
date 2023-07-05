@@ -19,7 +19,7 @@ const TaskItem = ({task}) => {
     const setComplete = async (e) => {
         editTask({
             ...task,
-            complete: true
+            complete: !complete
         })
     }
 
@@ -40,7 +40,7 @@ const TaskItem = ({task}) => {
                 <h1> 
                     {!complete ?
                     <FaCheck className='completeIcon' onClick={setComplete} /> :
-                    <FaTimes className='uncompleteIcon' />
+                    <FaTimes className='uncompleteIcon' onClick={setComplete}/>
                     }
                     
                     <FaTrash className='deleteIcon' onClick={deleted} />
