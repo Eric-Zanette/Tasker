@@ -41,7 +41,7 @@ function LoginForm() {
                 <input type='text' placeholder='Email' value={formData.email} name='email' onChange={e => handleChange(e)} className={`formInput ${formData.errors.email && 'isInvalid'}`}></input>
                 {formData.errors.email && <div className="invalidText">{formData.errors.email}</div>}
                 {/* Password */}
-                <input type='text' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password && 'isInvalid'}`}></input>
+                <input type='password' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password && 'isInvalid'}`}></input>
                 {formData.errors.password && <div className="invalidText">{formData.errors.password}</div>}
 
                 <div className="flexBetween">

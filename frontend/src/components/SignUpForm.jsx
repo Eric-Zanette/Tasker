@@ -45,10 +45,10 @@ function SignUpForm() {
                 <input type='text' placeholder='Email' value={formData.email} name='email' onChange={e => handleChange(e)} className={`formInput ${formData.errors.email && 'isInvalid'}`}></input>
                 {formData.errors.email && <div className="invalidText">{formData.errors.email}</div>}
                 {/* password */}
-                <input type='text' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password && 'isInvalid'}`}></input>
+                <input type='password' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password && 'isInvalid'}`}></input>
                 {formData.errors.password && <div className="invalidText">{formData.errors.password}</div>}
                 {/* password2 */}
-                <input type='text' placeholder='Repeat Password' value={formData.password2} name='password2' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password2 && 'isInvalid'}`}></input>
+                <input type='password' placeholder='Repeat Password' value={formData.password2} name='password2' onChange={e => handleChange(e)} className={`formInput ${formData.errors.password2 && 'isInvalid'}`}></input>
                 {formData.errors.password2 && <div className="invalidText">{formData.errors.password2}</div>}
 
                 <div className="flexBetween">
