@@ -217,6 +217,7 @@ nav .navListContainer .navList li:hover{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .formContainer .form{
@@ -294,6 +295,7 @@ footer .container{
 }
 
 /* Utilities */
+
 .container{
   margin: auto;
   max-width: 1100px;
@@ -302,6 +304,12 @@ footer .container{
 .flex{
   display: flex;
   justify-content: space-between;
+}
+
+.loading{
+  align-self: center;
+  margin: 50px;
+  font-size: 25px;
 }
 
 .btn{
@@ -318,6 +326,7 @@ footer .container{
   color: #000000;
   transition: 0.1s;
 }
+
 
 .btn:hover{
   color: var(--color2);

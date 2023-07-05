@@ -1,4 +1,4 @@
-import{createContext, useState, useContext, useEffect } from 'react'
+import{createContext, useState, useContext} from 'react'
 import UserContext from '../Users/UserContext'
 import axios from 'axios'
 
@@ -6,11 +6,13 @@ const TasksContext = createContext()
 
 export const TasksProvider = ({children}) => {
   const [tasks, setTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const {user} = useContext(UserContext)
 
 
   const fetchTasks = async () => {
+    setIsLoading(true)
     try {
       if(user) {
         const response = await axios.get('http://localhost:5000/api/tasks')
@@ -20,12 +22,13 @@ export const TasksProvider = ({children}) => {
       console.log(error)
       setTasks([])
     }
+    setIsLoading(false)
   }
 
   const addTask = async (task) => {
     try {
       if(user) {
-        const response = await axios.post('http://localhost:5000/api/tasks', task)
+        await axios.post('http://localhost:5000/api/tasks', task)
         fetchTasks()
         }
     } catch(error) {
@@ -36,8 +39,7 @@ export const TasksProvider = ({children}) => {
   const editTask = async (task) => {
     try {
       if(user) {
-        
-        const response = await axios.post(`http://localhost:5000/api/tasks/${task._id}`, task)
+        await axios.post(`http://localhost:5000/api/tasks/${task._id}`, task)
         fetchTasks()
         }
     } catch(error) {
@@ -57,7 +59,7 @@ export const TasksProvider = ({children}) => {
 
 
   return (
-    <TasksContext.Provider value={{tasks, fetchTasks, addTask, editTask, deleteTask}}>
+    <TasksContext.Provider value={{tasks, fetchTasks, addTask, editTask, deleteTask, isLoading}}>
         {children}
     </TasksContext.Provider>
     

@@ -2,23 +2,32 @@ import UserContext from "../context/Users/UserContext"
 import { useContext, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import TasksContext from "../context/Tasks/TasksContext"
+import { ClipLoader } from "react-spinners"
 
 
 const Profile = () => {
   const {logout, user} = useContext(UserContext)
-  const { tasks, fetchTasks } = useContext(TasksContext)
+  const { tasks, fetchTasks, isLoading } = useContext(TasksContext)
   
-
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!user){
-      navigate('/login')
-    }
-  },[user, navigate])
+    fetchTasks()
+  }
+  ,[])
 
   if (!user){
-    return <div>Loading...</div>
+    navigate('/login')
+    return 'no user'
+  }
+
+  if(isLoading){
+    return (
+      <div className="profileContainer">
+        <p className="loading">LOADING</p>
+      </div>
+      
+    )
   }
 
   return (

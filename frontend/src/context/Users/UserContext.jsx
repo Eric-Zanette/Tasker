@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import datetime from 'datetime'
 
 const UserContext = createContext()
 
@@ -11,13 +10,14 @@ export const UserProvider = ({children}) => {
     const [user, setUser] = useState(localToken &&
         jwt_decode(
         localStorage.getItem('user')
-        )
-        )
-
+        ))
+   
     const isExpired = (token) => {
         try{
+            const decodedToken = jwt_decode(token)
             const now = Math.floor(Date.now() / 1000)
-            if(now > token.exp) {localStorage.removeItem('user')}
+            if(now > decodedToken.exp) {localStorage.removeItem('user')}
+            
         } catch {
             return false
         }
@@ -34,6 +34,7 @@ export const UserProvider = ({children}) => {
             await axios.post('http://localhost:5000/api/users/register', newUser)
             return true
         } catch(error) {
+
             return error.response.data
         }
       }
