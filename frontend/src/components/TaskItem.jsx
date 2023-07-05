@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useState } from 'react'
-import { FaPlus, FaMinus, FaCheck, FaTrash, FaTimes } from 'react-icons/fa'
+import { FaPlus, FaMinus, FaCheck, FaTrash, FaTimes, FaEdit } from 'react-icons/fa'
 import TasksContext from '../context/Tasks/TasksContext'
 import TaskForm from './TaskForm'
 
 const TaskItem = ({task}) => {
-    const [toggle, setToggle] = useState(false)
+    const [underToggle, setunderToggle] = useState(false)
+    const [editToggle, setEditToggle] = useState(false)
 
     const {posted, title, description, complete, finishBy, createdAt} = task
 
@@ -13,7 +14,11 @@ const TaskItem = ({task}) => {
 
 
     const onClick = async () => {
-        await setToggle(!toggle)
+        await setunderToggle(!underToggle)
+    }
+
+    const editClick = async () => {
+        await setEditToggle(!editToggle)
     }
 
     const setComplete = async (e) => {
@@ -45,19 +50,25 @@ const TaskItem = ({task}) => {
                     
                     <FaTrash className='deleteIcon' onClick={deleted} />
                     {title}
-                    {toggle ? 
+                    {/* <FaEdit className='editIcon' onClick={editClick}/> */}
+                    {underToggle ? 
                     <FaMinus className='openMenuIcon' onClick={onClick} /> : 
                     <FaPlus className='openMenuIcon' onClick={onClick} />}
                 </h1>
             </div>
-            <div className="underCard" style={{display : toggle ? 'block' : 'none'}}>
+            <div className="underCard" style={{display : underToggle ? 'block' : 'none'}}>
                 <div className="underFlex" >
                     <p><strong>{`posted on: ${timePosted.toISOString().split('T')[0]}`}</strong></p>
                     <p><strong>{`complete by: ${finish.toISOString().split('T')[0]}`}</strong></p>
                 </div>
                 <p className='itemDescription'>{description}</p>
                 <p className='timeLeft'>{`${daysLeft} ${(daysLeft >= 2) ? 'Days' : 'Day'} Left to Complete!`}</p>
-            </div>
+            </div>  
+            {/* TO DO - EDIT FORM */}
+{/*          <div className="editFormDiv" style={{display : editToggle ? 'block' : 'none'}}>
+                <TaskForm edit={true}/>
+            </div> */}
+            
         </>
     )
     }

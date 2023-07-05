@@ -19,7 +19,7 @@ const Home = () => {
       <div className="taskContainer">
       {user != null ? (
           <>
-            <TaskForm />
+            <TaskForm edit={false}/>
             <TaskList />
           </>
         ) : (

@@ -10,6 +10,9 @@ export const TasksProvider = ({children}) => {
 
   const {user} = useContext(UserContext)
 
+  const localToken = localStorage.getItem('user')
+  axios.defaults.headers.common['Authorization'] = localToken
+
 
   const fetchTasks = async () => {
     setIsLoading(true)
@@ -59,7 +62,7 @@ export const TasksProvider = ({children}) => {
 
 
   return (
-    <TasksContext.Provider value={{tasks, fetchTasks, addTask, editTask, deleteTask, isLoading}}>
+    <TasksContext.Provider value={{tasks, fetchTasks, addTask, editTask, deleteTask, isLoading, setIsLoading}}>
         {children}
     </TasksContext.Provider>
     

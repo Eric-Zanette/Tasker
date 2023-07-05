@@ -129,6 +129,28 @@ nav .navListContainer .navList li:hover{
   align-items: center;
 }
 
+.taskList .mainSortTitleContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width:500px
+}
+
+.taskList .mainSortTitleContainer h1{
+  grid-column: 2/ 3;
+}
+
+
+.taskList .mainSortTitleContainer .sorter{
+  grid-column: 3/ 4;
+  width: 70%;
+  height: 25%;
+  justify-self: end;
+  align-self: center;
+  background-color: var(--color2);
+  color: white;
+  border-radius: 5px;
+}
+
 .taskList .listTitle{
   margin: 20px 0;
 }
@@ -308,7 +330,6 @@ footer .container{
 
 .loading{
   align-self: center;
-  margin: 50px;
   font-size: 25px;
 }
 

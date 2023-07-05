@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import TasksContext from '../context/Tasks/TasksContext'
 import UserContext from '../context/Users/UserContext'
 
-const TaskForm = () => {
+const TaskForm = ({edit}) => {
     const[task, setTask] = useState({
         posted : '',
         title: '',
@@ -14,7 +14,7 @@ const TaskForm = () => {
     })
     const[toggle, setToggle] = useState(false)
 
-    const{addTask} = useContext(TasksContext)
+    const{addTask, editTask} = useContext(TasksContext)
     const{user} = useContext(UserContext)
 
     const onChange = (e) => {
@@ -26,18 +26,31 @@ const TaskForm = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        var now = (new Date()).toISOString().split('T')[0]
   
         const postedTask = {
             ...task,
-            posted: now,
             user: user.username
         }
         addTask(postedTask)
+        
     }
 
     const toggleForm = () => {
         setToggle(!toggle)
+    }
+
+    if(edit === true){
+        return(
+            <div className='formControl edit'>
+                <h1>Edit Task</h1>
+                <form className="taskForm">
+                    <input type="text" className='taskInput' onChange={onChange} id='title' placeholder='Task Name' value={task.title}/>
+                    <textarea className='taskInput description' onChange={onChange} id='description' placeholder='Task Description' value={task.description}/>
+                    <input type="date" className='taskInput' onChange={onChange} id='finishBy' placeholder='Task Description' value={task.finishBy}/>
+                    <button className="btn btn-3" onClick={onSubmit}>Set Task</button>
+                </form>
+            </div>
+        )
     }
 
     return (

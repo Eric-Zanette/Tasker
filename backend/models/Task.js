@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const TaskSchema = new Schema ({
-    poster: {
+    posted: {
         type: Date,
         default: new Date()
     },
