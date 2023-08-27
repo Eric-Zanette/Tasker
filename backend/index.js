@@ -1,40 +1,48 @@
 /* packages */
-const express = require('express')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const passport = require('passport')
-const cors = require('cors')
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const cors = require("cors");
 
 /* routes */
-const users = require('./routes/api/users')
-const tasks = require('./routes/api/tasks')
+const users = require("./routes/api/users");
+const tasks = require("./routes/api/tasks");
 
 /* initialize express */
-const app = express()
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
 /* Parser middleware */
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /* Bring in mongo key */
-const mkey = (require('./config/keys')).mongoURI
+const mkey = require("./config/keys").mongoURI;
 
 /* passport config */
-require('./config/passport')(passport)
+require("./config/passport")(passport);
 
 mongoose
-    .connect(mkey)
-    .then(() => console.log('mongo DB connected'))
-    .catch((error) => console.log(error))
+  .connect(mkey)
+  .then(() => console.log("mongo DB connected"))
+  .catch((error) => console.log(error));
 
+app.use("/api/users", users);
+app.use("/api/tasks", tasks);
 
+const port = process.env.PORT || 5000;
 
-app.use('/api/users', users)
-app.use('/api/tasks', tasks)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(__dirname + "../frontend/build"));
 
-const port = process.env.PORT || 5000
+  app.get("*", (req, res) => {
+    res.sendFile(__dirname + "../frontend/build/index.html");
+  });
+}
 
-app.listen(port, () => console.log(`Server running on port ${port}`))
+app.listen(port, "127.0.0.1", () =>
+  console.log(`Server running on port ${port}`)
+);

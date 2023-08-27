@@ -31,7 +31,7 @@ const TaskForm = ({edit}) => {
             ...task,
             user: user.username
         }
-        addTask(postedTask)
+        edit ? editTask(postedTask) : addTask(postedTask)
         
     }
 
