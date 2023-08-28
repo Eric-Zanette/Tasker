@@ -23,5 +23,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "proxy": "127.0.0.1:5002"
 }
